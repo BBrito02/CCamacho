@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carolina Camacho :: Simulação Automóvel</title>
+<meta name="description" content="Peça uma simulação de seguro automóvel. Preencha os seus dados e da sua viatura e entraremos em contacto com a nossa melhor proposta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="Carolina Camacho — página inicial">
+      <img src="imgs/logo-carolina-camacho.png" alt="Carolina Camacho — gestão e mediação de seguros">
+    </a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Navegação principal">
+      <ul><li><a href="sobre_nos.html">Sobre Nós</a></li><li><a href="servicos.html">Serviços</a></li><li><a href="sinistros.html">Sinistros</a></li><li><a href="simulacao.html" aria-current="page">Simulação</a></li><li><a href="contactos.html">Contactos</a></li></ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="page-head">
+  <div class="blob blob-a"></div>
+  <div class="wrap">
+    <span class="eyebrow">Simulação</span>
+    <h1>Simulação Automóvel</h1>
+    <p>Preencha o formulário com os seus dados e da sua viatura e brevemente entraremos em contacto consigo com a nossa melhor proposta.</p>
+  </div>
+</section>
+
+<section class="section" style="padding-top:56px">
+  <div class="wrap">
+
+    <form class="card w3form" method="post" action="https://api.web3forms.com/submit" data-require-one="telefone,email" data-reveal>
+      <input type="hidden" name="access_key" value="">
+      <input type="hidden" name="subject" value="Novo pedido de Simulação Automóvel — carolinacamacho.pt">
+      <input type="hidden" name="from_name" value="Website Carolina Camacho">
+      <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <fieldset>
+        <legend>Dados do Condutor</legend>
+        <div class="grid">
+          <div class="field"><label for="nome">Nome *</label><input id="nome" name="nome" type="text" required></div>
+          <div class="field"><label for="morada">Morada</label><input id="morada" name="morada" type="text"></div>
+          <div class="grid g2">
+            <div class="field"><label for="cp">Código Postal</label><input id="cp" name="codigo_postal" type="text" inputmode="numeric"></div>
+            <div class="field"><label for="localidade">Localidade</label><input id="localidade" name="localidade" type="text"></div>
+          </div>
+          <div class="field"><label for="profissao">Profissão</label><input id="profissao" name="profissao" type="text"></div>
+          <div class="grid g3">
+            <div class="field"><label for="nascimento">Data de Nascimento *</label><input id="nascimento" name="data_nascimento" type="date" required></div>
+            <div class="field"><label for="carta">Data Carta de Condução *</label><input id="carta" name="data_carta" type="date" required></div>
+            <div class="field"><label for="nif">NIF</label><input id="nif" name="nif" type="text" inputmode="numeric"></div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Dados do Veículo</legend>
+        <div class="grid">
+          <div class="grid g2">
+            <div class="field"><label for="marca">Marca *</label><input id="marca" name="marca" type="text" required></div>
+            <div class="field"><label for="modelo">Modelo *</label><input id="modelo" name="modelo" type="text" required></div>
+          </div>
+          <div class="grid g5">
+            <div class="field"><label for="matricula">Matrícula *</label><input id="matricula" name="matricula" type="text" required></div>
+            <div class="field"><label for="ano">Ano</label><input id="ano" name="ano" type="text" inputmode="numeric"></div>
+            <div class="field"><label for="cilindrada">Cilindrada</label><input id="cilindrada" name="cilindrada" type="text" inputmode="numeric"></div>
+            <div class="field"><label for="lotacao">Lotação</label><input id="lotacao" name="lotacao" type="text" inputmode="numeric"></div>
+            <div class="field"><label for="peso">Peso Bruto</label><input id="peso" name="peso_bruto" type="text" inputmode="numeric"></div>
+          </div>
+          <div class="radio-row">
+            <span>É o condutor habitual do veículo?</span>
+            <label><input type="radio" name="condutor_habitual" value="sim"> Sim</label>
+            <label><input type="radio" name="condutor_habitual" value="nao"> Não</label>
+          </div>
+          <div class="radio-row">
+            <span>Tem ou teve seguro para este ou outro veículo?</span>
+            <label><input type="radio" name="teve_seguro" value="sim"> Sim</label>
+            <label><input type="radio" name="teve_seguro" value="nao"> Não</label>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Coberturas Pretendidas</legend>
+        <div class="coverage">
+<label><input type="checkbox" name="coberturas[]" value="Responsabilidade Cívil — Capital de 3.250.000 €"> Responsabilidade Cívil — Capital de 3.250.000 €</label>
+<label><input type="checkbox" name="coberturas[]" value="Responsabilidade Cívil — Capital de 50.000.000 €"> Responsabilidade Cívil — Capital de 50.000.000 €</label>
+<label><input type="checkbox" name="coberturas[]" value="Choque, Colisão, Capotamento"> Choque, Colisão, Capotamento</label>
+<label><input type="checkbox" name="coberturas[]" value="Incêndio, Raio, Explosão"> Incêndio, Raio, Explosão</label>
+<label><input type="checkbox" name="coberturas[]" value="Furto ou Roubo"> Furto ou Roubo</label>
+<label><input type="checkbox" name="coberturas[]" value="Quebra Isolada de Vidros"> Quebra Isolada de Vidros</label>
+<label><input type="checkbox" name="coberturas[]" value="Assistência em Viagem"> Assistência em Viagem</label>
+<label><input type="checkbox" name="coberturas[]" value="Protecção Jurídica"> Protecção Jurídica</label>
+<label><input type="checkbox" name="coberturas[]" value="Riscos Catastróficos da Natureza"> Riscos Catastróficos da Natureza</label>
+<label><input type="checkbox" name="coberturas[]" value="Greves, Tumultos e Alterações de Ordem Pública"> Greves, Tumultos e Alterações de Ordem Pública</label>
+<label><input type="checkbox" name="coberturas[]" value="Actos de Terrorismo, Vandalismo, Maliciosos ou Sabotagem"> Actos de Terrorismo, Vandalismo, Maliciosos ou Sabotagem</label>
+<label><input type="checkbox" name="coberturas[]" value="Veículo de Substituição por Acidente"> Veículo de Substituição por Acidente</label>
+<label><input type="checkbox" name="coberturas[]" value="Ocupantes de Viatura"> Ocupantes de Viatura</label>
+        </div>
+        <div class="grid g3" style="margin-top:16px">
+          <div class="field"><label for="valor">Valor Actual do Veículo</label><input id="valor" name="valor_veiculo" type="text" inputmode="numeric"></div>
+          <div class="field"><label for="franquia">Franquia Pretendida</label><input id="franquia" name="franquia" type="text"></div>
+          <div class="field"><label for="protocolo">Protocolo</label><input id="protocolo" name="protocolo" type="text"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Dados de Contacto</legend>
+        <div class="grid">
+          <div class="field"><label for="cnome">Nome</label><input id="cnome" name="contacto_nome" type="text"></div>
+          <div class="grid g2">
+            <div class="field"><label for="telefone">Telefone / Telemóvel (1)</label><input id="telefone" name="telefone" type="tel"></div>
+            <div class="field"><label for="email">Email (1)</label><input id="email" name="email" type="email"></div>
+          </div>
+          <div class="field"><label for="obs">Observações</label><textarea id="obs" name="observacoes"></textarea></div>
+        </div>
+      </fieldset>
+
+      <div class="form-notes">
+        <p>Os campos marcados com (*) são de preenchimento obrigatório.</p>
+        <p>(1) É obrigatório preencher pelo menos um dos contactos: telefone/telemóvel ou email.</p>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-blue" type="submit">Enviar pedido de simulação <span class="arr">&rarr;</span></button>
+      </div>
+      <div class="form-status" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+
+<section class="insurers" aria-label="Mediador autorizado">
+  <div class="wrap">
+    <span class="eyebrow">Mediador autorizado</span>
+  </div>
+  <div class="marquee">
+    <div class="marquee-track">
+<span><img src="imgs/logo-fidelidade.png" alt="Fidelidade"></span>
+<span><img src="imgs/logo-lusitania.png" alt="Lusitania"></span>
+<span><img src="imgs/logo-tranquilidade.png" alt="Tranquilidade"></span>
+<span><img src="imgs/logo-metlife.png" alt="MetLife"></span>
+<span><img src="imgs/logo-mgen.png" alt="MGEN"></span>
+<span class="dup" aria-hidden="true"><img src="imgs/logo-fidelidade.png" alt="Fidelidade"></span>
+<span class="dup" aria-hidden="true"><img src="imgs/logo-lusitania.png" alt="Lusitania"></span>
+<span class="dup" aria-hidden="true"><img src="imgs/logo-tranquilidade.png" alt="Tranquilidade"></span>
+<span class="dup" aria-hidden="true"><img src="imgs/logo-metlife.png" alt="MetLife"></span>
+<span class="dup" aria-hidden="true"><img src="imgs/logo-mgen.png" alt="MGEN"></span>
+    </div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">Carolina Camacho, Lda.
+          <small>Mediação de Seguros &middot; Há 40 anos a pensar em si</small>
+        </div>
+        <a class="social" href="http://www.facebook.com/pages/Carolina-Camacho/294897557250897" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.52 1.5-3.9 3.78-3.9 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.57v1.88h2.78l-.45 2.9h-2.33V22c4.78-.76 8.44-4.92 8.44-9.94Z"/></svg>
+          Siga-nos no Facebook
+        </a>
+      </div>
+      <div>
+        <div class="footer-h">Navegação</div>
+        <ul class="footer-nav">
+          <li><a href="sobre_nos.html">Sobre Nós</a></li>
+          <li><a href="servicos.html">Serviços</a></li>
+          <li><a href="sinistros.html">Sinistros</a></li>
+          <li><a href="simulacao.html">Simulação</a></li>
+          <li><a href="contactos.html">Contactos</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-h">Contactos</div>
+        <div class="footer-contact">
+          <span>Avenida 25 Abril 36 - B, 1º - G<br>2800-299 Almada</span>
+          <a href="tel:+351212744377">(+351) 212 744 377</a>
+          <a href="mailto:geral@carolinacamacho.pt">geral@carolinacamacho.pt</a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">&copy; 2026 Carolina Camacho, Lda. Todos os direitos reservados</div>
+  </div>
+</footer>
+<script src="assets/main.js"></script>
+
+</body>
+</html>
