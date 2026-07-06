@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Equipa de trabalho">
+  <rect x="0" y="0" width="800" height="600" rx="28" fill="#E9F2F9"/>
+  <circle cx="580" cy="170" r="150" fill="#DCEAF5"/>
+  <circle cx="150" cy="115" r="46" fill="none" stroke="#C9A03C" stroke-width="6"/>
+  <circle cx="682" cy="420" r="10" fill="#C9A03C" opacity=".6"/>
+  <circle cx="96" cy="330" r="7" fill="#2E7FBE" opacity=".5"/>
+
+  <!-- speech bubble -->
+  <rect x="296" y="196" width="92" height="48" rx="16" fill="#FFFFFF" stroke="#CFE1EF"/>
+  <path d="M318 244 l0 16 16 -16 z" fill="#FFFFFF" stroke="#CFE1EF"/>
+  <circle cx="322" cy="220" r="5" fill="#1B5E96"/>
+  <circle cx="342" cy="220" r="5" fill="#1B5E96"/>
+  <circle cx="362" cy="220" r="5" fill="#1B5E96"/>
+
+  <!-- people (behind desk) -->
+  <g>
+    <circle cx="210" cy="300" r="27" fill="#E8B98B"/>
+    <rect x="170" y="332" width="80" height="80" rx="28" fill="#1B5E96"/>
+  </g>
+  <g>
+    <circle cx="335" cy="286" r="29" fill="#B77E4F"/>
+    <rect x="291" y="320" width="88" height="92" rx="30" fill="#0C2D4D"/>
+  </g>
+  <g>
+    <circle cx="462" cy="294" r="28" fill="#F2C9A0"/>
+    <rect x="420" y="328" width="84" height="84" rx="28" fill="#C9A03C"/>
+  </g>
+  <g>
+    <circle cx="586" cy="302" r="26" fill="#8C5A3C"/>
+    <rect x="548" y="334" width="76" height="78" rx="26" fill="#2E7FBE"/>
+  </g>
+
+  <!-- desk -->
+  <rect x="110" y="404" width="580" height="30" rx="15" fill="#0C2D4D"/>
+
+  <!-- laptop -->
+  <rect x="176" y="344" width="92" height="62" rx="8" fill="#3D5166"/>
+  <rect x="184" y="352" width="76" height="46" rx="4" fill="#9CC4E4"/>
+
+  <!-- papers -->
+  <rect x="532" y="380" width="84" height="10" rx="5" fill="#FFFFFF" stroke="#CFE1EF"/>
+  <rect x="544" y="366" width="60" height="10" rx="5" fill="#FFFFFF" stroke="#CFE1EF"/>
+
+  <!-- floor shadow -->
+  <ellipse cx="400" cy="486" rx="250" ry="20" fill="#DCEAF5"/>
+</svg>

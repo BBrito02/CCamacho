@@ -1,0 +1,43 @@
+CAROLINA CAMACHO — NOVO WEBSITE
+================================
+
+COMO PUBLICAR
+1. Copie todos os ficheiros .html e as pastas "assets/" e "imgs/" para a raiz
+   do seu alojamento (onde estão hoje os ficheiros antigos).
+2. A pasta "imgs/" deste pacote já inclui o logótipo da empresa e os logótipos
+   das seguradoras (limpos e otimizados). Pode juntá-la à pasta "imgs/" que já
+   existe no servidor — os nomes são novos, nada é substituído.
+3. NÃO apague do servidor:
+   - pdf/declaracao_amigavel.pdf  (Declaração Amigável, página Sinistros)
+   Nota: a antiga fotografia imgs/sobrenos.jpg deixou de ser usada — foi
+   substituída por ilustrações (imgs/equipa.svg e imgs/protecao.svg). Para
+   usar fotografias reais no futuro, basta substituir estes dois ficheiros.
+
+FORMULÁRIOS — COMO ATIVAR O ENVIO (Web3Forms)
+Os formulários de Simulação e de Contacto estão ligados ao serviço Web3Forms
+(plano gratuito). Para ativar o envio, faltam só 2 passos:
+
+1. Aceda a https://web3forms.com e crie a "Access Key" gratuita usando o
+   email geral@carolinacamacho.pt (a chave chega por email, sem password).
+2. Abra o ficheiro assets/main.js e, logo no início, substitua o texto
+   COLOQUE_AQUI_A_SUA_CHAVE pela chave recebida (mantendo as aspas):
+      var WEB3FORMS_ACCESS_KEY = "a-sua-chave-aqui";
+
+A partir daí, tudo o que for submetido nos dois formulários chega por email
+a geral@carolinacamacho.pt, com todos os campos organizados. O visitante vê
+uma mensagem de confirmação na própria página, sem sair do site.
+Inclui proteção anti-spam (honeypot + filtro do Web3Forms).
+
+Enquanto a chave não estiver configurada, os formulários mostram um aviso
+educado a pedir para contactar por telefone/email (nada se perde em silêncio).
+
+Nota: o site antigo usava o script FormMail do alojamento Amen. Deixa de ser
+necessário — o Web3Forms substitui-o e funciona no mesmo alojamento.
+
+O QUE MUDOU NESTA VERSÃO
+- Design moderno, animado e responsivo (telemóvel, tablet e computador)
+- Novo logótipo da empresa no cabeçalho
+- Logótipos das seguradoras limpos e otimizados, em carrossel
+- Todo o conteúdo original mantido, incluindo o formulário de simulação
+- Mapa do Google atualizado na página de Contactos
+- Ano do copyright atualizado para 2026

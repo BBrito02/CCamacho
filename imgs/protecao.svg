@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="Proteção e confiança">
+  <rect x="0" y="0" width="800" height="600" rx="28" fill="#E9F2F9"/>
+  <circle cx="200" cy="150" r="130" fill="#DCEAF5"/>
+  <circle cx="660" cy="120" r="40" fill="none" stroke="#C9A03C" stroke-width="6"/>
+  <circle cx="118" cy="430" r="8" fill="#2E7FBE" opacity=".5"/>
+
+  <!-- rain -->
+  <g fill="#9CC4E4">
+    <circle cx="160" cy="140" r="7"/>
+    <circle cx="252" cy="76" r="6"/>
+    <circle cx="410" cy="52" r="7"/>
+    <circle cx="556" cy="80" r="6"/>
+    <circle cx="648" cy="170" r="7"/>
+    <circle cx="120" cy="240" r="6"/>
+    <circle cx="688" cy="270" r="6"/>
+  </g>
+
+  <!-- umbrella pole -->
+  <circle cx="400" cy="112" r="8" fill="#C9A03C"/>
+  <rect x="396" y="118" width="8" height="336" rx="4" fill="#0C2D4D"/>
+  <path d="M404 452 a20 20 0 0 1 -40 0" fill="none" stroke="#0C2D4D" stroke-width="8" stroke-linecap="round"/>
+
+  <!-- umbrella canopy -->
+  <path d="M196 302 C196 176 282 118 400 118 C518 118 604 176 604 302
+           a34 26 0 0 0 -68 0 a34 26 0 0 0 -68 0 a34 26 0 0 0 -68 0
+           a34 26 0 0 0 -68 0 a34 26 0 0 0 -68 0 a34 26 0 0 0 -68 0 z"
+        fill="#C9A03C"/>
+  <path d="M196 302 C196 176 282 118 400 118 C430 118 430 118 400 118
+           C330 130 268 200 264 302 a34 26 0 0 0 -68 0 z" fill="#B78C2E" opacity=".55"/>
+
+  <!-- family -->
+  <g>
+    <circle cx="330" cy="330" r="24" fill="#E8B98B"/>
+    <rect x="298" y="358" width="64" height="102" rx="24" fill="#1B5E96"/>
+  </g>
+  <g>
+    <circle cx="472" cy="324" r="26" fill="#B77E4F"/>
+    <rect x="438" y="354" width="68" height="108" rx="26" fill="#0C2D4D"/>
+  </g>
+  <g>
+    <circle cx="404" cy="394" r="15" fill="#F2C9A0"/>
+    <rect x="384" y="412" width="40" height="56" rx="16" fill="#2E7FBE"/>
+  </g>
+
+  <!-- ground -->
+  <ellipse cx="400" cy="488" rx="230" ry="18" fill="#DCEAF5"/>
+</svg>
