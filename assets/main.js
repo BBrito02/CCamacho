@@ -1,11 +1,10 @@
-
 // ============================================================
 // CONFIGURAÇÃO WEB3FORMS
 // Substitua o valor abaixo pela chave de acesso (Access Key)
 // recebida ao criar a conta gratuita em https://web3forms.com
 // com o email geral@carolinacamacho.pt
 // ============================================================
-var WEB3FORMS_ACCESS_KEY = "COLOQUE_AQUI_A_SUA_CHAVE";
+var WEB3FORMS_ACCESS_KEY = "7dd2e72a-4ba8-4fe0-913c-aba4e4592293";
 
 (function(){
   // mobile nav
@@ -60,6 +59,15 @@ var WEB3FORMS_ACCESS_KEY = "COLOQUE_AQUI_A_SUA_CHAVE";
     var submitBtn=form.querySelector('button[type="submit"]');
     var btnText=submitBtn?submitBtn.innerHTML:'';
 
+    // desativa as bolhas nativas do browser: a validação passa a ser nossa,
+    // com destaque a vermelho de TODOS os campos em falta de uma só vez
+    form.setAttribute('novalidate','novalidate');
+
+    function markInvalid(el){
+      el.classList.add('input-error');
+      el.addEventListener('input',function(){el.classList.remove('input-error');},{once:true});
+    }
+
     function show(msg,type){
       if(!status)return;
       status.textContent=msg;
@@ -69,18 +77,26 @@ var WEB3FORMS_ACCESS_KEY = "COLOQUE_AQUI_A_SUA_CHAVE";
 
     form.addEventListener('submit',function(ev){
       ev.preventDefault();
-      // valida "pelo menos um" (ex.: telefone ou email)
+      // 1) campos obrigatórios (e formatos, ex.: email) — destaca todos os inválidos
+      var invalid=[];
+      form.querySelectorAll('input,textarea,select').forEach(function(el){
+        if(el.type==='hidden'||el.classList.contains('hp-field'))return;
+        if(!el.checkValidity())invalid.push(el);
+      });
+      if(invalid.length){
+        invalid.forEach(markInvalid);
+        show('Por favor preencha corretamente os campos destacados a vermelho.','error');
+        invalid[0].focus();
+        return;
+      }
+      // 2) valida "pelo menos um" (ex.: telefone ou email)
       var reqOne=form.getAttribute('data-require-one');
       if(reqOne){
         var names=reqOne.split(',');
         var fields=names.map(function(n){return form.querySelector('[name="'+n+'"]');});
         var filled=fields.some(function(el){return el&&el.value.trim()!=='';});
         if(!filled){
-          fields.forEach(function(el){
-            if(!el)return;
-            el.classList.add('input-error');
-            el.addEventListener('input',function(){el.classList.remove('input-error');},{once:true});
-          });
+          fields.forEach(function(el){if(el)markInvalid(el);});
           show('Para podermos contactá-lo, é obrigatório indicar o telefone/telemóvel ou o email.','error');
           if(fields[0])fields[0].focus();
           return;
