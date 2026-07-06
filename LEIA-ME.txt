@@ -1,6 +1,7 @@
 CAROLINA CAMACHO — NOVO WEBSITE
 ================================
 
+
 COMO PUBLICAR
 1. Copie todos os ficheiros .html e as pastas "assets/" e "imgs/" para a raiz
    do seu alojamento (onde estão hoje os ficheiros antigos).
