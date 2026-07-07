@@ -4,7 +4,7 @@
 // recebida ao criar a conta gratuita em https://web3forms.com
 // com o email geral@carolinacamacho.pt
 // ============================================================
-var WEB3FORMS_ACCESS_KEY = "7dd2e72a-4ba8-4fe0-913c-aba4e4592293";
+var WEB3FORMS_ACCESS_KEY = "COLOQUE_AQUI_A_SUA_CHAVE";
 
 (function(){
   // mobile nav
@@ -23,7 +23,7 @@ var WEB3FORMS_ACCESS_KEY = "7dd2e72a-4ba8-4fe0-913c-aba4e4592293";
   onScroll();
   // scroll reveals
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var els=document.querySelectorAll('[data-reveal],.timeline');
+  var els=document.querySelectorAll('[data-reveal]');
   if(reduced||!('IntersectionObserver' in window)){
     els.forEach(function(el){el.classList.add('in');});
   }else{
