@@ -88,6 +88,10 @@
         opacity: 1;
         transform: none;
       }
+      .load-fade {
+        animation: fadeUp 0.8s var(--ease) both;
+        animation-delay: var(--d, 0s);
+      }
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -843,7 +847,7 @@
         width: 2px;
         background: linear-gradient(var(--gold), var(--blue-bright));
         transform-origin: top;
-        animation: lineGrow 1.2s var(--ease) both;
+        animation: lineGrow 1.2s var(--ease) 0.45s both;
       }
       .timeline li {
         position: relative;
@@ -1474,7 +1478,8 @@
       <section class="section" style="padding-top: 56px">
         <div class="wrap">
           <form
-            class="card w3form"
+            class="card w3form load-fade"
+            style="--d: 0.3s"
             method="post"
             action="https://api.web3forms.com/submit"
             data-require-one="telefone,email"
