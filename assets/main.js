@@ -1,11 +1,10 @@
 // ============================================================
-// CONFIGURAÇÃO WEB3FORMS
-// Substitua o valor abaixo pela chave de acesso (Access Key)
-// recebida ao criar a conta gratuita em https://web3forms.com
-// com o email geral@carolinacamacho.pt
+// WEB3FORMS — as chaves (Access Keys) estão nos próprios
+// formulários, no campo escondido de cada página:
+//   simulacao.html  ->  <input ... name="access_key" value="...">
+//   contactos.html  ->  <input ... name="access_key" value="...">
+// Para mudar uma chave, edite o HTML da página respetiva.
 // ============================================================
-var WEB3FORMS_ACCESS_KEY = "7dd2e72a-4ba8-4fe0-913c-aba4e4592293";
-
 (function(){
   // mobile nav
   var btn=document.querySelector('.nav-toggle');
@@ -49,11 +48,10 @@ var WEB3FORMS_ACCESS_KEY = "7dd2e72a-4ba8-4fe0-913c-aba4e4592293";
   }
 
   // ============ Web3Forms: envio dos formulários ============
-  var keyOk = WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY !== "7dd2e72a-4ba8-4fe0-913c-aba4e4592293";
   document.querySelectorAll('form.w3form').forEach(function(form){
-    // preenche a chave no campo escondido (permite também o envio nativo sem JS)
+    // a chave vem do campo escondido do próprio formulário
     var keyInput=form.querySelector('input[name="access_key"]');
-    if(keyInput&&keyOk)keyInput.value=WEB3FORMS_ACCESS_KEY;
+    var keyOk=!!(keyInput&&keyInput.value.trim().length>=10);
 
     var status=form.querySelector('.form-status');
     var submitBtn=form.querySelector('button[type="submit"]');
