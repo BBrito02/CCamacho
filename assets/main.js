@@ -4,7 +4,7 @@
 // recebida ao criar a conta gratuita em https://web3forms.com
 // com o email geral@carolinacamacho.pt
 // ============================================================
-var WEB3FORMS_ACCESS_KEY = "COLOQUE_AQUI_A_SUA_CHAVE";
+var WEB3FORMS_ACCESS_KEY = "7dd2e72a-4ba8-4fe0-913c-aba4e4592293";
 
 (function(){
   // mobile nav
@@ -49,7 +49,7 @@ var WEB3FORMS_ACCESS_KEY = "COLOQUE_AQUI_A_SUA_CHAVE";
   }
 
   // ============ Web3Forms: envio dos formulários ============
-  var keyOk = WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY !== "COLOQUE_AQUI_A_SUA_CHAVE";
+  var keyOk = WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY !== "7dd2e72a-4ba8-4fe0-913c-aba4e4592293";
   document.querySelectorAll('form.w3form').forEach(function(form){
     // preenche a chave no campo escondido (permite também o envio nativo sem JS)
     var keyInput=form.querySelector('input[name="access_key"]');
