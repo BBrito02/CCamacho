@@ -11,7 +11,7 @@
 // ===================== CONFIGURAÇÃO =====================
 
 // Quem recebe o aviso de cada novo pedido (vários: separar por vírgulas)
-var EMAIL_AVISO = 'britobernardo0@gmail.com';
+var EMAIL_AVISO = 'COLOQUE_AQUI_O_EMAIL';
 
 // true = envia ao cliente um email automático a agradecer o contacto
 // (sai do endereço da conta Google onde o script está instalado)

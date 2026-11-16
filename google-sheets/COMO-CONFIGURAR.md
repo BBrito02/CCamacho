@@ -23,7 +23,7 @@ Faça tudo **com a conta Google que vai receber os pedidos**.
 1. Na folha, abra o menu **Extensões → Apps Script**.
 2. Apague todo o texto que aparece no editor.
 3. Copie e cole o conteúdo completo do ficheiro `Codigo.gs` (que está nesta pasta).
-4. No início do código, confirme o email em `EMAIL_AVISO`. É para lá que vão os avisos.
+4. No início do código, substitua `COLOQUE_AQUI_O_EMAIL` (em `EMAIL_AVISO`) pelo email que vai receber os avisos, mantendo as aspas. Faça esta alteração só no editor do Google: o ficheiro do repositório fica com o texto de exemplo, para o email não ficar público no GitHub.
 5. Carregue no ícone de disquete (**Guardar**).
 
 ### 3. Executar a configuração inicial
