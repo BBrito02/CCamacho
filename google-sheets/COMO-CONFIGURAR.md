@@ -71,7 +71,9 @@ Depois de editar o script, carregue em **Implementar → Gerir implementações*
 
 ## Resposta automática ao cliente
 Quando o cliente indica um email, recebe uma mensagem automática a agradecer o contacto e a dizer que a empresa entrará em contacto em breve. Esse email sai do endereço da conta Google onde o script está instalado, e as respostas do cliente chegam a essa caixa.
-- Para mudar o texto, edite `respostaCliente` e `assuntoCliente` no código.
+- O email tem título, resumo do pedido, próximos passos, contactos da empresa e o logótipo no fim.
+- Para mudar os textos, edite no código `assuntoCliente`, `tituloCliente`, `respostaCliente` e `passosCliente` (um por formulário). Os contactos da assinatura estão em `EMPRESA`.
+- Para ver como fica, execute a função **testarEmailCliente** no editor. Envia um exemplo para o `EMAIL_AVISO`.
 - Para desligar, mude para `RESPOSTA_AUTOMATICA = false`.
 
 Depois de qualquer alteração, publique uma nova versão (ver acima).
