@@ -69,5 +69,13 @@ Depois de editar o script, carregue em **Implementar → Gerir implementações*
 2. Substitua o endereço em `assets/main.js` pelo novo e envie-o para o alojamento.
 3. Na conta antiga: **Implementar → Gerir implementações → Arquivar**, e apague a folha de testes. Assim não fica lá nenhum dado de clientes.
 
-## Resposta automática ao cliente (opcional)
-No código, `RESPOSTA_AUTOMATICA = true` envia ao cliente um email "Recebemos o seu pedido". Esse email sai do endereço da conta Google que instalou o script, por isso só deve ser ativado na conta definitiva da empresa. Depois de alterar, publique uma nova versão (ver acima).
+## Resposta automática ao cliente
+Quando o cliente indica um email, recebe uma mensagem automática a agradecer o contacto e a dizer que a empresa entrará em contacto em breve. Esse email sai do endereço da conta Google onde o script está instalado, e as respostas do cliente chegam a essa caixa.
+- Para mudar o texto, edite `respostaCliente` e `assuntoCliente` no código.
+- Para desligar, mude para `RESPOSTA_AUTOMATICA = false`.
+
+Depois de qualquer alteração, publique uma nova versão (ver acima).
+
+## Cores da coluna Estado
+*Por contactar* a amarelo, *Contactado* e *Proposta enviada* a verde, *Fechado* a verde mais forte, *Sem interesse* a vermelho.
+Para mudar as cores, edite `CORES_ESTADO` no código e execute a função **atualizarCores** no editor.

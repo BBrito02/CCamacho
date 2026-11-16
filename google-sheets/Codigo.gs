@@ -13,8 +13,9 @@
 // Quem recebe o aviso de cada novo pedido (vários: separar por vírgulas)
 var EMAIL_AVISO = 'britobernardo0@gmail.com';
 
-// true = envia também ao cliente um email "Recebemos o seu pedido"
-var RESPOSTA_AUTOMATICA = false;
+// true = envia ao cliente um email automático a agradecer o contacto
+// (sai do endereço da conta Google onde o script está instalado)
+var RESPOSTA_AUTOMATICA = true;
 
 // Proteção contra abuso: máximo de pedidos aceites por hora
 var LIMITE_POR_HORA = 60;
@@ -59,7 +60,8 @@ var FORMULARIOS = {
     ],
     obrigatorios: ['nome', 'data_nascimento', 'data_carta', 'marca', 'modelo', 'matricula'],
     umDe: ['telefone', 'email'],
-    respostaCliente: 'Recebemos o seu pedido de simulação de seguro automóvel. Vamos analisá-lo e entraremos em contacto consigo com a nossa melhor proposta o mais brevemente possível.'
+    assuntoCliente: 'Recebemos o seu pedido de simulação — Carolina Camacho',
+    respostaCliente: 'Obrigado pelo seu pedido de simulação. Já o recebemos e iremos entrar em contacto consigo o mais brevemente possível com a nossa melhor proposta.'
   },
   contacto: {
     folha: 'Contactos',
@@ -72,7 +74,8 @@ var FORMULARIOS = {
     ],
     obrigatorios: ['nome', 'email', 'mensagem'],
     umDe: [],
-    respostaCliente: 'Recebemos a sua mensagem e responderemos o mais brevemente possível.'
+    assuntoCliente: 'Obrigado pelo seu contacto — Carolina Camacho',
+    respostaCliente: 'Obrigado pelo seu contacto. Já recebemos a sua mensagem e iremos entrar em contacto consigo o mais brevemente possível.'
   }
 };
 
@@ -189,20 +192,45 @@ function obterFolha(def) {
   }
   folha.setColumnWidth(titulos.length, 260); // Notas
 
-  // "Por contactar" destacado a amarelo, "Fechado" a verde
-  var colEstado = folha.getRange('B:B'); // coluna inteira: não se desloca quando se inserem linhas
-  folha.setConditionalFormatRules([
-    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo('Por contactar')
-      .setBackground('#fff4c2').setFontColor('#7a5b00').setBold(true).setRanges([colEstado]).build(),
-    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo('Fechado')
-      .setBackground('#e8f5ec').setFontColor('#1e6b3a').setRanges([colEstado]).build(),
-    SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo('Sem interesse')
-      .setFontColor('#8a96a3').setRanges([colEstado]).build()
-  ]);
+  aplicarCores(folha);
 
   var vazia = ss.getSheetByName('Folha1') || ss.getSheetByName('Sheet1');
   if (vazia && vazia.getLastRow() === 0 && ss.getSheets().length > 1) ss.deleteSheet(vazia);
   return folha;
+}
+
+// Cores da coluna "Estado". Para mudar uma cor, altere aqui e execute a função
+// "atualizarCores" no editor (aplica-se às linhas que já existem).
+var CORES_ESTADO = {
+  'Por contactar':    { fundo: '#fff4c2', texto: '#7a5b00', negrito: true }, // amarelo
+  'Contactado':       { fundo: '#d9f2e1', texto: '#1e6b3a' },                // verde
+  'Proposta enviada': { fundo: '#d9f2e1', texto: '#1e6b3a' },                // verde
+  'Fechado':          { fundo: '#b7e4c7', texto: '#14532d', negrito: true }, // verde mais forte
+  'Sem interesse':    { fundo: '#fbe0de', texto: '#9e2b25' }                 // vermelho
+};
+
+function aplicarCores(folha) {
+  var cabecalho = folha.getRange(1, 1, 1, folha.getLastColumn()).getValues()[0];
+  var c = cabecalho.indexOf(COL_ESTADO) + 1;
+  if (!c) return;
+  // coluna inteira: não se desloca quando se inserem linhas
+  var col = folha.getRange(1, c, folha.getMaxRows(), 1);
+  var regras = Object.keys(CORES_ESTADO).map(function (estado) {
+    var cor = CORES_ESTADO[estado];
+    return SpreadsheetApp.newConditionalFormatRule().whenTextEqualTo(estado)
+      .setBackground(cor.fundo).setFontColor(cor.texto).setBold(!!cor.negrito)
+      .setRanges([col]).build();
+  });
+  folha.setConditionalFormatRules(regras);
+}
+
+// Executar no editor depois de mudar as cores (atualiza os dois separadores)
+function atualizarCores() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  Object.keys(FORMULARIOS).forEach(function (k) {
+    var folha = ss.getSheetByName(FORMULARIOS[k].folha);
+    if (folha) aplicarCores(folha);
+  });
 }
 
 function regraEstado() {
@@ -246,9 +274,9 @@ function enviarAviso(def, dados) {
 function enviarRespostaCliente(def, dados) {
   var nome = dados.nome.split(' ')[0];
   var corpo = 'Olá ' + nome + ',\n\n' + def.respostaCliente +
-    '\n\nSe precisar de falar connosco antes disso, estamos disponíveis pelo telefone (+351) 212 744 377.\n\n' +
+    '\n\nSe precisar de falar connosco antes disso, pode ligar-nos para o (+351) 212 744 377 ou responder a este email.\n\n' +
     'Com os melhores cumprimentos,\nCarolina Camacho, Lda.\nAvenida 25 Abril 36 - B, 1º - G, 2800-299 Almada';
-  MailApp.sendEmail({ to: dados.email, subject: 'Recebemos o seu pedido — Carolina Camacho', body: corpo, name: 'Carolina Camacho, Lda.' });
+  MailApp.sendEmail({ to: dados.email, subject: def.assuntoCliente, body: corpo, name: 'Carolina Camacho, Lda.' });
 }
 
 // ---------- utilitários ----------
@@ -301,6 +329,7 @@ function excedeuLimite() {
 function configurar() {
   obterFolha(FORMULARIOS.simulacao);
   obterFolha(FORMULARIOS.contacto);
+  atualizarCores();
   MailApp.sendEmail(EMAIL_AVISO, 'Formulários do site — configuração concluída',
     'Está tudo pronto. Os pedidos feitos no site vão aparecer nesta folha de cálculo:\n' +
     SpreadsheetApp.getActiveSpreadsheet().getUrl());
