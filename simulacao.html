@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Public+Sans:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="assets/style.css?v=3" />
+    <link rel="stylesheet" href="assets/style.css?v=4" />
   </head>
   <body>
     <header class="site-header">
@@ -79,23 +79,14 @@
       <section class="section" style="padding-top: 56px">
         <div class="wrap">
           <form
-            class="card w3form load-fade"
+            class="card w3form wizard load-fade"
             style="--d: 0.3s"
             method="post"
-            action="https://api.web3forms.com/submit"
             data-require-one="telefone,email"
+            data-success-title="Pedido enviado com sucesso!"
+            data-success-text="Obrigado pela sua confiança. Recebemos o seu pedido de simulação e entraremos em contacto consigo com a nossa melhor proposta o mais brevemente possível."
           >
-            <input type="hidden" name="access_key" value="e2ccf0b5-cf5f-4c4a-aefb-ba62da64d270" />
-            <input
-              type="hidden"
-              name="subject"
-              value="Novo pedido de Simulação Automóvel — carolinacamacho.pt"
-            />
-            <input
-              type="hidden"
-              name="from_name"
-              value="Website Carolina Camacho"
-            />
+            <input type="hidden" name="formulario" value="simulacao" />
             <input
               type="checkbox"
               name="botcheck"
@@ -104,299 +95,294 @@
               autocomplete="off"
               aria-hidden="true"
             />
-            <fieldset>
+
+            <!-- passos (só aparece com JavaScript ativo) -->
+            <ol class="stepper" hidden>
+              <li><button type="button" data-goto="0"><span class="n">1</span><span class="t">Condutor</span></button></li>
+              <li><button type="button" data-goto="1"><span class="n">2</span><span class="t">Veículo</span></button></li>
+              <li><button type="button" data-goto="2"><span class="n">3</span><span class="t">Coberturas</span></button></li>
+              <li><button type="button" data-goto="3"><span class="n">4</span><span class="t">Contacto</span></button></li>
+            </ol>
+
+            <fieldset class="step">
               <legend>Dados do Condutor</legend>
               <div class="grid">
                 <div class="field">
-                  <label for="nome">Nome *</label
-                  ><input id="nome" name="nome" type="text" required />
+                  <label for="nome">Nome *</label>
+                  <input id="nome" name="nome" type="text" autocomplete="name" required />
                 </div>
                 <div class="field">
-                  <label for="morada">Morada</label
-                  ><input id="morada" name="morada" type="text" />
+                  <label for="morada">Morada</label>
+                  <input id="morada" name="morada" type="text" autocomplete="street-address" />
                 </div>
                 <div class="grid g2">
                   <div class="field">
-                    <label for="cp">Código Postal</label
-                    ><input
+                    <label for="cp">Código Postal</label>
+                    <input
                       id="cp"
                       name="codigo_postal"
                       type="text"
                       inputmode="numeric"
+                      autocomplete="postal-code"
+                      placeholder="0000-000"
+                      maxlength="8"
+                      pattern="\d{4}-\d{3}"
+                      data-format="cp"
+                      data-msg="Indique o código postal no formato 0000-000."
                     />
                   </div>
                   <div class="field">
-                    <label for="localidade">Localidade</label
-                    ><input id="localidade" name="localidade" type="text" />
+                    <label for="localidade">Localidade</label>
+                    <input id="localidade" name="localidade" type="text" autocomplete="address-level2" />
                   </div>
                 </div>
                 <div class="field">
-                  <label for="profissao">Profissão</label
-                  ><input id="profissao" name="profissao" type="text" />
+                  <label for="profissao">Profissão</label>
+                  <input id="profissao" name="profissao" type="text" autocomplete="organization-title" />
                 </div>
                 <div class="grid g3">
                   <div class="field">
-                    <label for="nascimento">Data de Nascimento *</label
-                    ><input
+                    <label for="nascimento">Data de Nascimento *</label>
+                    <input
                       id="nascimento"
                       name="data_nascimento"
                       type="date"
+                      autocomplete="bday"
+                      min="1900-01-01"
                       required
                     />
                   </div>
                   <div class="field">
-                    <label for="carta">Data Carta de Condução *</label
-                    ><input id="carta" name="data_carta" type="date" required />
+                    <label for="carta">Data Carta de Condução *</label>
+                    <input
+                      id="carta"
+                      name="data_carta"
+                      type="date"
+                      min="1900-01-01"
+                      data-after="nascimento"
+                      data-after-msg="A data da carta tem de ser posterior à data de nascimento."
+                      required
+                    />
                   </div>
                   <div class="field">
-                    <label for="nif">NIF</label
-                    ><input
+                    <label for="nif">NIF</label>
+                    <input
                       id="nif"
                       name="nif"
                       type="text"
                       inputmode="numeric"
+                      autocomplete="off"
+                      maxlength="9"
+                      data-format="digits"
+                      data-check="nif"
                     />
                   </div>
                 </div>
               </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset class="step">
               <legend>Dados do Veículo</legend>
               <div class="grid">
                 <div class="grid g2">
                   <div class="field">
-                    <label for="marca">Marca *</label
-                    ><input id="marca" name="marca" type="text" required />
+                    <label for="marca">Marca *</label>
+                    <input id="marca" name="marca" type="text" required />
                   </div>
                   <div class="field">
-                    <label for="modelo">Modelo *</label
-                    ><input id="modelo" name="modelo" type="text" required />
+                    <label for="modelo">Modelo *</label>
+                    <input id="modelo" name="modelo" type="text" required />
                   </div>
                 </div>
                 <div class="grid g5">
                   <div class="field">
-                    <label for="matricula">Matrícula *</label
-                    ><input
+                    <label for="matricula">Matrícula *</label>
+                    <input
                       id="matricula"
                       name="matricula"
                       type="text"
+                      autocomplete="off"
+                      placeholder="AA-00-AA"
+                      maxlength="8"
+                      pattern="[A-Z0-9]{2}-[A-Z0-9]{2}-[A-Z0-9]{2}"
+                      data-format="plate"
+                      data-msg="Indique a matrícula no formato AA-00-AA."
                       required
                     />
                   </div>
                   <div class="field">
-                    <label for="ano">Ano</label
-                    ><input
+                    <label for="ano">Ano</label>
+                    <input
                       id="ano"
                       name="ano"
                       type="text"
                       inputmode="numeric"
+                      placeholder="ex.: 2018"
+                      maxlength="4"
+                      data-format="digits"
+                      data-check="year"
                     />
                   </div>
                   <div class="field">
-                    <label for="cilindrada">Cilindrada</label
-                    ><input
+                    <label for="cilindrada">Cilindrada</label>
+                    <input
                       id="cilindrada"
                       name="cilindrada"
                       type="text"
                       inputmode="numeric"
+                      placeholder="cm³"
+                      data-format="digits"
+                      aria-describedby="hint-dua"
                     />
                   </div>
                   <div class="field">
-                    <label for="lotacao">Lotação</label
-                    ><input
+                    <label for="lotacao">Lotação</label>
+                    <input
                       id="lotacao"
                       name="lotacao"
                       type="text"
                       inputmode="numeric"
+                      placeholder="lugares"
+                      data-format="digits"
+                      aria-describedby="hint-dua"
                     />
                   </div>
                   <div class="field">
-                    <label for="peso">Peso Bruto</label
-                    ><input
+                    <label for="peso">Peso Bruto</label>
+                    <input
                       id="peso"
                       name="peso_bruto"
                       type="text"
                       inputmode="numeric"
+                      placeholder="kg"
+                      data-format="digits"
+                      aria-describedby="hint-dua"
                     />
                   </div>
                 </div>
+                <p class="hint" id="hint-dua">
+                  A cilindrada, a lotação e o peso bruto constam do Documento
+                  Único Automóvel (DUA) da viatura.
+                </p>
                 <div class="radio-row">
                   <span>É o condutor habitual do veículo?</span>
-                  <label
-                    ><input type="radio" name="condutor_habitual" value="sim" />
-                    Sim</label
-                  >
-                  <label
-                    ><input type="radio" name="condutor_habitual" value="nao" />
-                    Não</label
-                  >
+                  <label><input type="radio" name="condutor_habitual" value="sim" /> Sim</label>
+                  <label><input type="radio" name="condutor_habitual" value="nao" /> Não</label>
                 </div>
                 <div class="radio-row">
                   <span>Tem ou teve seguro para este ou outro veículo?</span>
-                  <label
-                    ><input type="radio" name="teve_seguro" value="sim" />
-                    Sim</label
-                  >
-                  <label
-                    ><input type="radio" name="teve_seguro" value="nao" />
-                    Não</label
-                  >
+                  <label><input type="radio" name="teve_seguro" value="sim" /> Sim</label>
+                  <label><input type="radio" name="teve_seguro" value="nao" /> Não</label>
                 </div>
               </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset class="step">
               <legend>Coberturas Pretendidas</legend>
-              <div class="coverage">
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Responsabilidade Cívil — Capital de 3.250.000 €"
-                  />
-                  Responsabilidade Cívil — Capital de 3.250.000 €</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Responsabilidade Cívil — Capital de 50.000.000 €"
-                  />
-                  Responsabilidade Cívil — Capital de 50.000.000 €</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Choque, Colisão, Capotamento"
-                  />
-                  Choque, Colisão, Capotamento</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Incêndio, Raio, Explosão"
-                  />
-                  Incêndio, Raio, Explosão</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Furto ou Roubo"
-                  />
-                  Furto ou Roubo</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Quebra Isolada de Vidros"
-                  />
-                  Quebra Isolada de Vidros</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Assistência em Viagem"
-                  />
-                  Assistência em Viagem</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Protecção Jurídica"
-                  />
-                  Protecção Jurídica</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Riscos Catastróficos da Natureza"
-                  />
-                  Riscos Catastróficos da Natureza</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Greves, Tumultos e Alterações de Ordem Pública"
-                  />
-                  Greves, Tumultos e Alterações de Ordem Pública</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Actos de Terrorismo, Vandalismo, Maliciosos ou Sabotagem"
-                  />
-                  Actos de Terrorismo, Vandalismo, Maliciosos ou
-                  Sabotagem</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Veículo de Substituição por Acidente"
-                  />
-                  Veículo de Substituição por Acidente</label
-                >
-                <label
-                  ><input
-                    type="checkbox"
-                    name="coberturas[]"
-                    value="Ocupantes de Viatura"
-                  />
-                  Ocupantes de Viatura</label
-                >
+
+              <div class="cov-group">
+                <p class="cov-h">Responsabilidade Civil <span>escolha uma opção</span></p>
+                <div class="coverage">
+                  <label><input type="radio" name="responsabilidade_civil" value="Capital de 3.250.000 €" /> Capital de 3.250.000 €</label>
+                  <label><input type="radio" name="responsabilidade_civil" value="Capital de 50.000.000 €" /> Capital de 50.000.000 €</label>
+                </div>
               </div>
-              <div class="grid g3" style="margin-top: 16px">
+
+              <div class="cov-group">
+                <p class="cov-h">Danos Próprios <span>pode escolher várias</span></p>
+                <div class="coverage">
+                  <label><input type="checkbox" name="coberturas[]" value="Choque, Colisão, Capotamento" /> Choque, Colisão, Capotamento</label>
+                  <label><input type="checkbox" name="coberturas[]" value="Incêndio, Raio, Explosão" /> Incêndio, Raio, Explosão</label>
+                  <label><input type="checkbox" name="coberturas[]" value="Furto ou Roubo" /> Furto ou Roubo</label>
+                  <label><input type="checkbox" name="coberturas[]" value="Quebra Isolada de Vidros" /> Quebra Isolada de Vidros</label>
+                  <label><input type="checkbox" name="coberturas[]" value="Riscos Catastróficos da Natureza" /> Riscos Catastróficos da Natureza</label>
+                  <label><input type="checkbox" name="coberturas[]" value="Greves, Tumultos e Alterações de Ordem Pública" /> Greves, Tumultos e Alterações de Ordem Pública</label>
+                  <label><input type="checkbox" name="coberturas[]" value="Actos de Terrorismo, Vandalismo, Maliciosos ou Sabotagem" /> Actos de Terrorismo, Vandalismo, Maliciosos ou Sabotagem</label>
+                </div>
+              </div>
+
+              <div class="cov-group">
+                <p class="cov-h">Coberturas Complementares <span>pode escolher várias</span></p>
+                <div class="coverage">
+                  <label><input type="checkbox" name="coberturas[]" value="Assistência em Viagem" /> Assistência em Viagem</label>
+                  <label><input type="checkbox" name="coberturas[]" value="Protecção Jurídica" /> Protecção Jurídica</label>
+                  <label><input type="checkbox" name="coberturas[]" value="Veículo de Substituição por Acidente" /> Veículo de Substituição por Acidente</label>
+                  <label><input type="checkbox" name="coberturas[]" value="Ocupantes de Viatura" /> Ocupantes de Viatura</label>
+                </div>
+              </div>
+
+              <div class="grid g3" style="margin-top: 22px">
                 <div class="field">
-                  <label for="valor">Valor Actual do Veículo</label
-                  ><input
+                  <label for="valor">Valor Actual do Veículo</label>
+                  <input
                     id="valor"
                     name="valor_veiculo"
                     type="text"
                     inputmode="numeric"
+                    placeholder="€"
                   />
                 </div>
                 <div class="field">
-                  <label for="franquia">Franquia Pretendida</label
-                  ><input id="franquia" name="franquia" type="text" />
+                  <label for="franquia">Franquia Pretendida</label>
+                  <input
+                    id="franquia"
+                    name="franquia"
+                    type="text"
+                    list="franquia-opcoes"
+                    placeholder="Escolha ou escreva"
+                  />
+                  <datalist id="franquia-opcoes">
+                    <option value="Sem franquia"></option>
+                    <option value="2% do capital"></option>
+                    <option value="4% do capital"></option>
+                    <option value="Não sei — aconselhem-me"></option>
+                  </datalist>
                 </div>
                 <div class="field">
-                  <label for="protocolo">Protocolo</label
-                  ><input id="protocolo" name="protocolo" type="text" />
+                  <label for="protocolo">Protocolo</label>
+                  <input id="protocolo" name="protocolo" type="text" />
                 </div>
               </div>
             </fieldset>
 
-            <fieldset>
+            <fieldset class="step">
               <legend>Dados de Contacto</legend>
               <div class="grid">
-                <div class="field">
-                  <label for="cnome">Nome</label
-                  ><input id="cnome" name="contacto_nome" type="text" />
+                <label class="check-line">
+                  <input type="checkbox" id="mesmo-condutor" checked />
+                  A pessoa a contactar é o próprio condutor
+                </label>
+                <div class="field" id="cnome-wrap">
+                  <label for="cnome">Nome</label>
+                  <input id="cnome" name="contacto_nome" type="text" autocomplete="name" />
                 </div>
                 <div class="grid g2">
                   <div class="field">
-                    <label for="telefone">Telefone / Telemóvel (1)</label
-                    ><input id="telefone" name="telefone" type="tel" />
+                    <label for="telefone">Telefone / Telemóvel (1)</label>
+                    <input
+                      id="telefone"
+                      name="telefone"
+                      type="tel"
+                      autocomplete="tel"
+                      pattern="[+0-9 ]{9,}"
+                      data-msg="Indique um número de telefone válido (9 dígitos)."
+                    />
                   </div>
                   <div class="field">
-                    <label for="email">Email (1)</label
-                    ><input id="email" name="email" type="email" />
+                    <label for="email">Email (1)</label>
+                    <input id="email" name="email" type="email" autocomplete="email" />
                   </div>
                 </div>
                 <div class="field">
-                  <label for="obs">Observações</label
-                  ><textarea id="obs" name="observacoes"></textarea>
+                  <label for="obs">Observações</label>
+                  <textarea id="obs" name="observacoes"></textarea>
                 </div>
+                <label class="check-line consent">
+                  <input type="checkbox" name="consentimento_rgpd" value="Sim" required />
+                  <span>Autorizo a Carolina Camacho, Lda. a utilizar os dados
+                  indicados neste formulário exclusivamente para preparar e
+                  enviar a proposta de seguro pedida. *</span>
+                </label>
               </div>
             </fieldset>
 
@@ -508,6 +494,6 @@
         </div>
       </div>
     </footer>
-    <script src="assets/main.js?v=3"></script>
+    <script src="assets/main.js?v=6"></script>
   </body>
 </html>

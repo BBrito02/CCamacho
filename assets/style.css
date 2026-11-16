@@ -24,6 +24,7 @@
   padding: 0;
 }
 html {
+  scroll-padding-top: 110px;
   scroll-behavior: smooth;
 }
 body {
@@ -1029,7 +1030,8 @@ legend {
     box-shadow 0.2s ease;
 }
 .field input:focus,
-.field textarea:focus {
+.field textarea:focus,
+.field select:focus {
   border-color: var(--blue-bright);
   box-shadow: 0 0 0 4px rgba(46, 127, 190, 0.12);
 }
@@ -1382,4 +1384,290 @@ input[type='radio'] {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #7e97ae;
+}
+
+/* ============ forms v4: wizard, errors, states ============ */
+[hidden] {
+  display: none !important;
+}
+.hint {
+  font-size: 0.84rem;
+  color: #5a6b7c;
+  margin: -4px 0 0;
+}
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 6px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #9e2b25;
+}
+.field-error::before {
+  content: '!';
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #c0392b;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+.check-line + .field-error {
+  margin-top: -8px;
+}
+input[type='checkbox'].input-error {
+  outline: 2px solid #c0392b;
+  outline-offset: 2px;
+}
+.field input::placeholder {
+  color: #9aabbb;
+}
+
+/* stepper */
+.stepper {
+  --gap: 0px;
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+  margin: 0 0 34px;
+}
+.stepper::before,
+.stepper::after {
+  content: '';
+  position: absolute;
+  top: 19px;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: var(--sky-line);
+}
+.stepper::after {
+  right: auto;
+  width: calc(75% * var(--progress, 0));
+  background: linear-gradient(90deg, var(--gold), var(--blue-bright));
+  transition: width 0.4s var(--ease);
+}
+.stepper li {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+}
+.stepper button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 0;
+  padding: 0 4px;
+  cursor: pointer;
+  font: inherit;
+  color: #6b7d8f;
+}
+.stepper .n {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 2px solid var(--sky-line);
+  font-family: var(--font-display);
+  font-weight: 700;
+  transition:
+    background 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+.stepper .t {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.stepper button:hover .n {
+  border-color: var(--blue-bright);
+}
+.stepper li.done .n {
+  background: var(--sky);
+  border-color: var(--blue);
+  color: var(--blue);
+}
+.stepper button[aria-current='step'] {
+  color: var(--navy);
+}
+.stepper button[aria-current='step'] .n {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--gold-soft);
+  box-shadow: 0 0 0 5px rgba(46, 127, 190, 0.15);
+}
+@media (max-width: 560px) {
+  .stepper .t {
+    font-size: 0.64rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+/* steps */
+.is-wizard .step:not(.active) {
+  display: none;
+}
+.is-wizard .step.active {
+  animation: fadeUp 0.45s var(--ease) both;
+  margin-bottom: 10px;
+}
+.step:focus {
+  outline: none;
+}
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+.is-wizard .form-actions {
+  border-top: 1px solid var(--sky);
+  padding-top: 24px;
+}
+.form-actions .step-count {
+  flex: 1;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #6b7d8f;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--navy);
+  border: 1.5px solid var(--sky-line);
+}
+.btn-ghost:hover {
+  border-color: var(--navy);
+}
+.btn:hover .arr-back {
+  transform: translateX(-4px);
+}
+.btn:disabled {
+  opacity: 0.7;
+  cursor: progress;
+  transform: none;
+}
+@media (max-width: 520px) {
+  form.card {
+    padding: 26px 20px;
+  }
+  .form-actions .step-count {
+    order: -1;
+    flex-basis: 100%;
+  }
+  .form-actions .btn {
+    flex: 1;
+    justify-content: center;
+    padding: 14px 18px;
+  }
+}
+
+/* coverage groups + selected states */
+.cov-group + .cov-group {
+  margin-top: 24px;
+}
+.cov-h {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.cov-h span {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6b7d8f;
+}
+.coverage label:has(input:checked),
+.radio-row label:has(input:checked) {
+  border-color: var(--blue);
+  background: var(--sky);
+  box-shadow: inset 0 0 0 1px var(--blue);
+}
+.coverage label:has(input:checked) {
+  color: var(--navy);
+  font-weight: 600;
+}
+.radio-row label {
+  padding: 6px 14px;
+  border: 1px solid var(--sky-line);
+  border-radius: 999px;
+  background: #fff;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+.radio-row label:hover {
+  border-color: var(--blue-bright);
+}
+.check-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.93rem;
+  cursor: pointer;
+}
+.check-line input {
+  flex: none;
+  margin-top: 4px;
+}
+.consent {
+  padding: 15px 17px;
+  background: var(--paper);
+  border: 1px solid var(--sky-line);
+  border-radius: 11px;
+  color: #38495b;
+}
+
+/* thank-you panel */
+.is-done > :not(.form-done) {
+  display: none !important;
+}
+.form-done {
+  text-align: center;
+  padding: 30px 10px 16px;
+  animation: fadeUp 0.6s var(--ease) both;
+}
+.form-done .done-ic {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f5ec;
+  color: #1e6b3a;
+  box-shadow: 0 0 0 10px rgba(30, 107, 58, 0.06);
+}
+.form-done h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--navy);
+  margin-bottom: 10px;
+  outline: none;
+}
+.form-done p {
+  max-width: 52ch;
+  margin: 0 auto 26px;
+  color: #38495b;
 }

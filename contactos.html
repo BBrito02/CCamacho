@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css?v=3">
+<link rel="stylesheet" href="assets/style.css?v=4">
 </head>
 <body>
 
@@ -60,16 +60,20 @@
       <span class="eyebrow">Formulário de contacto</span>
       <h2 class="disp" style="margin-top:12px">Envie-nos uma mensagem.</h2>
   
-      <form class="card w3form" method="post" action="https://api.web3forms.com/submit" style="margin-top:22px">
-        <input type="hidden" name="access_key" value="df45d49f-ca29-489d-ad54-9f5a6fa0aebf">
-        <input type="hidden" name="subject" value="Nova mensagem de Contacto — carolinacamacho.pt">
-        <input type="hidden" name="from_name" value="Website Carolina Camacho">
+      <form class="card w3form" method="post" style="margin-top:22px"
+        data-success-title="Mensagem enviada!"
+        data-success-text="Obrigado pelo seu contacto. Responderemos o mais brevemente possível.">
+        <input type="hidden" name="formulario" value="contacto">
         <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="grid">
-          <div class="field"><label for="fnome">Nome *</label><input id="fnome" name="nome" type="text" required></div>
-          <div class="field"><label for="femail">Email *</label><input id="femail" name="email" type="email" required></div>
+          <div class="field"><label for="fnome">Nome *</label><input id="fnome" name="nome" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="femail">Email *</label><input id="femail" name="email" type="email" autocomplete="email" required></div>
           <div class="field"><label for="fassunto">Assunto</label><input id="fassunto" name="assunto" type="text"></div>
           <div class="field"><label for="fmsg">Mensagem *</label><textarea id="fmsg" name="mensagem" required></textarea></div>
+          <label class="check-line consent">
+            <input type="checkbox" name="consentimento_rgpd" value="Sim" required>
+            <span>Autorizo a Carolina Camacho, Lda. a utilizar os dados indicados neste formulário exclusivamente para responder à minha mensagem. *</span>
+          </label>
         </div>
         <div class="form-notes">
           <p>Os campos marcados com (*) são de preenchimento obrigatório.</p>
@@ -141,7 +145,7 @@
     <div class="copyright">&copy; 2026 Carolina Camacho, Lda. Todos os direitos reservados</div>
   </div>
 </footer>
-<script src="assets/main.js?v=3"></script>
+<script src="assets/main.js?v=6"></script>
 
 </body>
 </html>
