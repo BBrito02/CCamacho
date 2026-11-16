@@ -1671,3 +1671,12 @@ input[type='checkbox'].input-error {
   margin: 0 auto 26px;
   color: #38495b;
 }
+
+/* links das redes sociais no rodapé, um por linha */
+.site-footer .social {
+  display: flex;
+  width: fit-content;
+}
+.site-footer .social + .social {
+  margin-top: 12px;
+}
