@@ -353,3 +353,41 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw3pci49LAn-jbb64HA
     });
   });
 })();
+
+/* ============ logos carousel: seamless infinite loop ============ */
+// Repeats the set of logos as many times as the screen needs and scrolls by
+// exactly one set, so the loop never shows an end or a jump.
+(function(){
+  var track=document.querySelector('.marquee-track');
+  if(!track)return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var box=track.parentElement;
+  var originals=Array.prototype.filter.call(track.children,function(s){return !s.classList.contains('dup');});
+  var SPEED=45; // pixels per second
+  var lastW=0;
+  function build(){
+    var w=box.clientWidth;
+    if(w===lastW)return;
+    lastW=w;
+    Array.prototype.slice.call(track.querySelectorAll('.dup')).forEach(function(d){d.remove();});
+    track.classList.add('is-loop'); // switch to margins before measuring
+    var setW=track.scrollWidth; // width of one set (each logo includes its right margin)
+    if(!setW)return;
+    var copies=Math.ceil(w/setW)+1; // enough to always cover the visible area
+    for(var i=0;i<copies;i++){
+      originals.forEach(function(s){
+        var c=s.cloneNode(true);
+        c.classList.add('dup');
+        c.setAttribute('aria-hidden','true');
+        var img=c.querySelector('img');if(img)img.alt='';
+        track.appendChild(c);
+      });
+    }
+    track.style.setProperty('--marquee-shift',setW+'px');
+    track.style.animationDuration=(setW/SPEED)+'s';
+  }
+  var t;
+  window.addEventListener('load',build);
+  window.addEventListener('resize',function(){clearTimeout(t);t=setTimeout(build,200);});
+  if(document.readyState==='complete')build();
+})();

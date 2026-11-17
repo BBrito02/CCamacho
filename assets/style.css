@@ -2607,3 +2607,21 @@ a.channel:hover,
   top: -1px;
   background: linear-gradient(90deg, var(--gold), var(--blue-bright));
 }
+
+/* ============ logos carousel: seamless loop (built by main.js) ============ */
+/* margin instead of gap, so one set is exactly the distance scrolled */
+.marquee-track.is-loop {
+  gap: 0;
+  animation-name: marquee-loop;
+}
+.marquee-track.is-loop span {
+  margin-right: 20px;
+}
+@keyframes marquee-loop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-1 * var(--marquee-shift)));
+  }
+}
