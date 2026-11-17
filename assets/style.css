@@ -1801,3 +1801,62 @@ input[type='checkbox'].input-error {
 .site-footer .social + .social {
   margin-top: 12px;
 }
+
+/* ============ v8: header call button (mobile) ============ */
+/* header call button (mobile only) */
+.header-call {
+  display: none;
+}
+@media (max-width: 900px) {
+  .header-call {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+    margin-right: -12px;
+    padding: 8px 12px;
+    border-radius: 10px;
+    background: var(--navy);
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+  }
+  .header-call:hover {
+    background: var(--blue);
+  }
+}
+@media (max-width: 900px) {
+  .brand {
+    flex: none;
+  }
+}
+@media (max-width: 480px) {
+  .header-inner {
+    gap: 14px;
+  }
+  .header-call {
+    margin-right: -6px;
+    padding: 9px;
+  }
+  .header-call span {
+    display: none;
+  }
+  .nav-toggle {
+    font-size: 0;
+    gap: 0;
+    padding: 9px;
+  }
+  .nav-toggle svg {
+    width: 20px;
+    height: 20px;
+  }
+  .brand img {
+    height: 40px;
+  }
+}
+@media (max-width: 360px) {
+  .brand img {
+    height: 34px;
+  }
+}
