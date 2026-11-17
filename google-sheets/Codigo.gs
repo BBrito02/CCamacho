@@ -306,7 +306,8 @@ function enviarRespostaCliente(def, dados) {
     htmlBody: html.html,
     body: html.texto,
     inlineImages: { logo: logo },
-    name: EMPRESA.nome
+    name: EMPRESA.nome,
+    replyTo: EMPRESA.email // se o cliente responder, a resposta vai para o email da empresa
   });
 }
 
