@@ -10,9 +10,23 @@ var FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbw3pci49LAn-jbb64HA
   var btn=document.querySelector('.nav-toggle');
   var nav=document.getElementById('site-nav');
   if(btn&&nav){
-    btn.addEventListener('click',function(){
-      var open=nav.classList.toggle('open');
+    var setOpen=function(open){
+      nav.classList.toggle('open',open);
       btn.setAttribute('aria-expanded',open?'true':'false');
+    };
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      setOpen(!nav.classList.contains('open'));
+    });
+    // close on link tap, backdrop tap, outside tap or Escape
+    nav.addEventListener('click',function(e){
+      if(e.target===nav||e.target.closest('a'))setOpen(false);
+    });
+    document.addEventListener('click',function(e){
+      if(nav.classList.contains('open')&&!nav.contains(e.target))setOpen(false);
+    });
+    document.addEventListener('keydown',function(e){
+      if(e.key==='Escape'&&nav.classList.contains('open')){setOpen(false);btn.focus();}
     });
   }
   // header shadow on scroll
